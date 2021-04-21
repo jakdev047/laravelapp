@@ -1,5 +1,6 @@
 # Route
-    Route::get('/url_path',[controllerName::class,'method_name']);
+    Route::get('/url_path',[controllerName::class,'method_name'])->name('categories.create');
+    href="{{route('categories.create')}}"
 
 # All artisan list
     php artisan list
