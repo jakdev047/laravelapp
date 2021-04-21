@@ -1,0 +1,8 @@
+# Route
+    Route::get('/url_path',[controllerName::class,'method_name']);
+
+# All artisan list
+    php artisan list
+
+# Make Controller
+    php artisan make:controller Admin/AdminController
