@@ -1,0 +1,49 @@
+1. at first make contrioller
+
+    php artisan make:controller Category/CategoryController
+
+2. controller pages
+
+    // create page show
+    public function create() {
+        return view('admin.categories.create');
+    }
+
+    // add category
+    public function store(Request $request) {
+        print_r($request->all());
+        exit();
+    }
+
+4. to create Data table
+    php artisan make:migration create_categories_table
+
+
+5. migration pages
+
+    Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('category_name');
+            $table->string('slug');
+            $table->timestamps();
+    });
+    
+    php artisan migrate
+    php artisan migrate:rollback (last table delete)
+
+3. route page
+
+    Route::get('/admin/category/create',[CategoryController::class,'create'])->name('categories.create');
+    Route::post('/admin/category',[CategoryController::class,'store'])->name('categories.store');
+
+4. Create ui
+    <form action="{{ route('categories.store') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label>Category Name</label>
+            <input type="text" class="form-control" name="category_name" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" Value="Save">
+        </div>
+    </form>

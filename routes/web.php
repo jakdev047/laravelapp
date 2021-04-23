@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/admin',[AdminController::class,'index']);
-Route::get('/admin/category/create',[CategoryController::class,'create'])->name('categories.create');
+
+// category
+Route::get('/admin/category/create',[CategoryController::class,'create'])->name('categories.create'); // create page show
+Route::post('/admin/category',[CategoryController::class,'store'])->name('categories.store');
 
 //  laravel welcome
 Route::get('/', function () {

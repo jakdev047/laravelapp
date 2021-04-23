@@ -7,3 +7,11 @@
 
 # Make Controller
     php artisan make:controller Admin/AdminController
+
+
+# Make Database
+    php artisan make:migration create_categories_table
+
+# Local file to Database
+    php artisan migrate
+    php artisan migrate:rollback (last table delete)
