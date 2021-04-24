@@ -1,0 +1,30 @@
+............ Route Part ...............
+
+Route::get('/admin/category',[CategoryController::class,'index'])->name('categories.all');
+
+............ Controller Part ...............
+
+public function index() {
+    $categories = Category::all();
+    return view('admin.categories.index',['categories'=>$categories]);
+}
+
+............ View Part ...............
+
+// menu part
+<li class="nav-item">
+    <a href="{{ route('categories.all') }}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>All Category</p>
+    </a>
+</li>
+
+// table part
+<tbody>
+    @foreach ($categories as $item)
+        <tr>
+            <td>{{ $item->category_name }}</td>
+            <td>{{ $item->slug }}</td>
+        </tr>
+    @endforeach
+</tbody>

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    // all category
+    public function index() {
+        $categories = Category::all();
+        return view('admin.categories.index',['categories'=>$categories]);
+    }
+
     // create page show
     public function create() {
         return view('admin.categories.create');
@@ -21,7 +27,7 @@ class CategoryController extends Controller
         try {
             Category::create([
                 'category_name' => $request->category_name,
-                'slug' => $request->category_name,
+                'slug' => str_replace(" ","-",$request->category_name),
             ]);
             return redirect()-> back()->with('success','Category Created Successfully.');
         } catch (\Exception $e) {
