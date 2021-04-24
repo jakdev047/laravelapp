@@ -15,3 +15,6 @@
 # Local file to Database
     php artisan migrate
     php artisan migrate:rollback (last table delete)
+
+# Make Model
+    php artisan make:model Category

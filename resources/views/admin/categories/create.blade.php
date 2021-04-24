@@ -27,11 +27,20 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-2">
+                                        @if (session('success'))
+                                            <div class="mb-2 alert alert-success">{{ session('success') }}</div>
+                                        @endif
+                                        @if (session('error'))
+                                            <div class="mb-2 alert alert-danger">{{ session('error') }}</div>
+                                        @endif
                                         <form action="{{ route('categories.store') }}" method="POST">
                                             @csrf
                                             <div class="form-group">
                                                 <label>Category Name</label>
-                                                <input type="text" class="form-control" name="category_name" required>
+                                                <input type="text" class="form-control" name="category_name">
+                                                @error('category_name')
+                                                    <p class="mt-2 text-danger">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-primary" Value="Save">
