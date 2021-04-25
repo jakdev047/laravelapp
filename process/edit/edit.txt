@@ -3,7 +3,7 @@
 Route::put('/admin/category/update/{id}',[CategoryController::class,'update'])->name('categories.update');
 
 ............ Controller Part ...............
-
+use Illuminate\Support\Str;
 public function update(Request $request,$id) {
     // all request data get => dd($request->all())
     $request->validate([
@@ -15,7 +15,8 @@ public function update(Request $request,$id) {
 
         // update value
         $category->category_name = $request->category_name;
-        $category->slug = str_replace(" ","-",$request->category_name);
+        // $category->slug = str_replace(" ","-",$request->category_name);
+        $category->slug =Str::slug($request->category_name);
         $category->update();
         
         return redirect()-> back()->with('success','Category Updated Successfully.');

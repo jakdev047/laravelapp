@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -55,7 +56,8 @@ class CategoryController extends Controller
 
             // update value
             $category->category_name = $request->category_name;
-            $category->slug = str_replace(" ","-",$request->category_name);
+            // $category->slug = str_replace(" ","-",$request->category_name);
+            $category->slug =Str::slug($request->category_name);
             $category->update();
             
             return redirect()-> back()->with('success','Category Updated Successfully.');
