@@ -42,4 +42,27 @@ class CategoryController extends Controller
         $category = Category::find($id);
         return view('admin.categories.edit',['category'=>$category]);
     }
+
+    // update category
+    public function update(Request $request,$id) {
+        // all request data get => dd($request->all())
+        $request->validate([
+            'category_name' => 'required|unique:categories|max:255'
+        ]);
+        try {
+            // get single category
+            $category = Category::find($id);
+
+            // update value
+            $category->category_name = $request->category_name;
+            $category->slug = str_replace(" ","-",$request->category_name);
+            $category->update();
+            
+            return redirect()-> back()->with('success','Category Updated Successfully.');
+        } catch (\Exception $e) {
+            // \Log::error('Category Created: '.$e->getMessage());
+            return redirect()-> back()->with('error','Something went wrong! Please try again');
+        }
+        
+    }
 }

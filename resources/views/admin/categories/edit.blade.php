@@ -33,7 +33,8 @@
                                         @if (session('error'))
                                             <div class="mb-2 alert alert-danger">{{ session('error') }}</div>
                                         @endif
-                                        <form action="{{ route('categories.store') }}" method="POST">
+                                        <form action="{{ route('categories.update', $category->id) }}" method="POST">
+                                            @method('PUT')
                                             @csrf
                                             <div class="form-group">
                                                 <label>Category Name</label>
@@ -44,7 +45,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-primary" Value="Save">
+                                                <input type="submit" class="btn btn-primary" Value="Update">
                                             </div>
                                         </form>
                                     </div>
