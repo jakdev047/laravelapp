@@ -36,4 +36,10 @@ class CategoryController extends Controller
         }
         
     }
+
+    // edit page show
+    public function edit($id) {
+        $category = Category::find($id);
+        return view('admin.categories.edit',['category'=>$category]);
+    }
 }

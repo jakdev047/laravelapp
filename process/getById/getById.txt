@@ -1,0 +1,27 @@
+............ Route Part ...............
+
+Route::get('/admin/category/edit/{id}',[CategoryController::class,'edit'])->name('categories.edit');
+
+............ Controller Part ...............
+
+public function edit($id) {
+    $category = Category::find($id);
+    return view('admin.categories.edit',['category'=>$category]);
+}
+
+............ View Part ...............
+
+// table view
+<td>
+    <a href="{{ route('categories.edit', $item->id) }}" class="btn btn-outline-primary">
+        Edit
+    </a>
+</td>
+
+// edit form
+<input 
+    type="text" 
+    class="form-control" 
+    name="category_name" 
+    value="{{ $category->category_name }}"
+>

@@ -32,6 +32,7 @@
                                                 <tr>
                                                     <th>Category Name</th>
                                                     <th>Slug</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -39,15 +40,15 @@
                                                     <tr>
                                                         <td>{{ $item->category_name }}</td>
                                                         <td>{{ $item->slug }}</td>
+                                                        <td>
+                                                            <a href="{{ route('categories.edit', $item->id) }}"
+                                                                class="btn btn-outline-primary">
+                                                                Edit
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Category Name</th>
-                                                    <th>Slug</th>
-                                                </tr>
-                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>

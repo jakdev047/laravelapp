@@ -16,7 +16,8 @@ Route::get('/admin',[AdminController::class,'index']);
 Route::get('/admin/category',[CategoryController::class,'index'])->name('categories.all'); 
 // all create page show
 Route::get('/admin/category/create',[CategoryController::class,'create'])->name('categories.create'); // create page show
-Route::post('/admin/category',[CategoryController::class,'store'])->name('categories.store');
+Route::post('/admin/category',[CategoryController::class,'store'])->name('categories.store'); // create category
+Route::get('/admin/category/edit/{id}',[CategoryController::class,'edit'])->name('categories.edit'); // edit page show
 
 //  laravel welcome
 Route::get('/', function () {

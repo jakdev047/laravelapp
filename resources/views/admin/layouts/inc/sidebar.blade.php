@@ -44,12 +44,6 @@
                                 <p>Create</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/admin/category/edit" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Edit</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
