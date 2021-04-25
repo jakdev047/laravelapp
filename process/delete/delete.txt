@@ -1,0 +1,37 @@
+............ Route Part ...............
+
+Route::delete('/admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('categories.destroy');
+
+............ Controller Part ...............
+
+// delete category
+public function destroy($id) {
+    try {
+        // get single category
+        $category = Category::find($id);
+
+        // delete value
+        $category->delete();
+
+        // another way delete => Category::destroy($id);
+        
+        return redirect()-> back()->with('success','Category Deleted Successfully.');
+    } catch (\Exception $e) {
+        // \Log::error('Category Created: '.$e->getMessage());
+        return redirect()-> back()->with('error','Something went wrong! Please try again');
+    }
+}
+
+............ View Part ...............
+
+<td>
+    <form class="d-inline"
+        action="{{ route('categories.destroy', $item->id) }}"
+        method="POST">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="btn btn-outline-danger">
+            Delete
+        </button>
+    </form>
+</td>

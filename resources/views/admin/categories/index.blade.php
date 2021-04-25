@@ -25,6 +25,12 @@
                     <div class="col-lg-12">
                         <div class="card card-primary card-outline">
                             <div class="card-body">
+                                @if (session('success'))
+                                    <div class="mb-2 alert alert-success">{{ session('success') }}</div>
+                                @endif
+                                @if (session('error'))
+                                    <div class="mb-2 alert alert-danger">{{ session('error') }}</div>
+                                @endif
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <table id="categoryList" class="table table-bordered table-striped">
@@ -45,6 +51,15 @@
                                                                 class="btn btn-outline-primary">
                                                                 Edit
                                                             </a>
+                                                            <form class="d-inline"
+                                                                action="{{ route('categories.destroy', $item->id) }}"
+                                                                method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-outline-danger">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

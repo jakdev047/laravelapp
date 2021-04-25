@@ -67,4 +67,23 @@ class CategoryController extends Controller
         }
         
     }
+
+    // delete category
+    public function destroy($id) {
+        try {
+            // get single category
+            $category = Category::find($id);
+
+            // delete value
+            $category->delete();
+
+            // another way delete => Category::destroy($id);
+            
+            return redirect()-> back()->with('success','Category Deleted Successfully.');
+        } catch (\Exception $e) {
+            // \Log::error('Category Created: '.$e->getMessage());
+            return redirect()-> back()->with('error','Something went wrong! Please try again');
+        }
+    }
+
 }
