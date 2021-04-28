@@ -46,7 +46,13 @@
                                                 <label>Category</label>
                                                 <select name="category_id" class="form-control">
                                                     <option value="">Choose Category</option>
-                                                    <option value="1">Grocery</option>
+
+                                                    @foreach ($categories as $item)
+                                                        <option value="{{ $item->id }}">
+                                                            {{ $item->category_name }}
+                                                        </option>
+                                                    @endforeach
+
                                                 </select>
                                                 @error('category_id')
                                                     <p class="mt-2 text-danger">{{ $message }}</p>
@@ -77,7 +83,7 @@
                                                 <label>Description</label>
                                                 <textarea name="description" cols="15" rows="5" class="form-control">
 
-                                                                </textarea>
+                                                                    </textarea>
                                                 @error('description')
                                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                                 @enderror
