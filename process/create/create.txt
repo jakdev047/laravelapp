@@ -85,6 +85,22 @@
             @enderror
         </div>
         <div class="form-group">
+            <label>Image</label>
+            <input type="file" name="image">
+            @error('image')
+                <p class="mt-2 text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" cols="15" rows="5" class="form-control">
+
+                        </textarea>
+            @error('description')
+                <p class="mt-2 text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="form-group">
             <input type="submit" class="btn btn-primary" Value="Save">
         </div>
     </form>

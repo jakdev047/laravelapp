@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('admin.products.index',['products'=>$products]);
     }
 
     /**
@@ -25,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -36,7 +38,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:products|max:255',
+            'category_id' => 'required'
+        ]);
+        try {
+            Product::create([
+                'name' => $request->name,
+                'category_id' => $request->category_id,
+                'slug' => Str::slug($request->name),
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'description' => $request->description,
+            ]);
+            return redirect()-> back()->with('success','Product Created Successfully.');
+        } catch (\Exception $e) {
+            return redirect()-> back()->with('error','Something went wrong! Please try again');
+        }
     }
 
     /**

@@ -38,3 +38,15 @@ Schema::create('products', function (Blueprint $table) {
 });
 
 php artisan migrate
+
+............ Model Command Part ...............
+
+protected $fillable = [
+    'category_id',
+    'name',
+    'slug',
+    'price',
+    'quantity',
+    'image',
+    'description'
+];
