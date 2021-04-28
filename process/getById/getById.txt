@@ -9,6 +9,13 @@ public function edit($id) {
     return view('admin.categories.edit',['category'=>$category]);
 }
 
+// double variable pass
+public function edit(Product $product)
+{
+    $categories = Category::all();
+    return view('admin.products.edit',compact('categories','product'));
+}
+
 ............ View Part ...............
 
 // table view
@@ -25,3 +32,13 @@ public function edit($id) {
     name="category_name" 
     value="{{ $category->category_name }}"
 >
+
+// select 
+<select name="category_id" class="form-control">
+    @foreach ($categories as $item)
+        <option value="{{ $item->id }}"
+            {{ $item->id === $product->category_id ? 'selected' : '' }}>
+            {{ $item->category_name }}
+        </option>
+    @endforeach
+</select>

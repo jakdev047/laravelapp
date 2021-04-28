@@ -55,19 +55,19 @@
                                                         <td>{{ $item->quantity }}</td>
                                                         <td>{{ $item->description }}</td>
                                                         <td>
-                                                            {{-- <a href="{{ route('products.edit', $item->id) }}"
+                                                            <a href="{{ route('products.edit', $item->id) }}"
                                                                 class="btn btn-outline-primary">
                                                                 Edit
                                                             </a>
                                                             <form class="d-inline"
-                                                                action="{{ route('categories.destroy', $item->id) }}"
+                                                                action="{{ route('products.destroy', $item->id) }}"
                                                                 method="POST">
                                                                 @method('DELETE')
                                                                 @csrf
                                                                 <button type="submit" class="btn btn-outline-danger">
                                                                     Delete
                                                                 </button>
-                                                            </form> --}}
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach
