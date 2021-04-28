@@ -1,0 +1,6 @@
+............ Command Part ...............
+
+php artisan make:model Product -mcr
+
+model > migrate > controller > route
+

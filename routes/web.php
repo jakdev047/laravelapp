@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 // admin
@@ -20,6 +21,9 @@ Route::post('/admin/category',[CategoryController::class,'store'])->name('catego
 Route::get('/admin/category/edit/{id}',[CategoryController::class,'edit'])->name('categories.edit'); // edit page show
 Route::put('/admin/category/update/{id}',[CategoryController::class,'update'])->name('categories.update'); // update category
 Route::delete('/admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('categories.destroy'); // delete category
+
+// product
+Route::resource('admin/products',ProductController::class);
 
 //  laravel welcome
 Route::get('/', function () {

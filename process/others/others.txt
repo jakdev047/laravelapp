@@ -1,0 +1,40 @@
+............ Controller Command Part ...............
+
+php artisan make:model Product -mcr
+
+all list    => index
+craete page => create
+add create  => store
+edit page   => edit
+upadate     => update
+delete      => destroy
+single      => show
+
+............ Route Command Part ...............
+
+Route::resource('admin/products',ProductController::class);
+php artisan route:list
+
+all list    => products.index   => 'admin/products'
+craete page => products.create  => 'admin/products/create'
+add create  => products.store   => 'admin/products'
+edit page   => products.edit    => 'admin/products/{product}/edit'
+upadate     => products.update  => 'admin/products/{product}'
+delete      => products.destroy => 'admin/products/{product}'
+show        => products.show    => 'admin/products/{product}'
+
+............ Migration Command Part ...............
+
+Schema::create('products', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('category_id')->constrained();
+    $table->string('name');
+    $table->string('slug');
+    $table->decimal('price')->nullable();
+    $table->integer('quantity')->default(0);
+    $table->string('image')->nullable();
+    $table->text('description')->nullable();
+    $table->timestamps();
+});
+
+php artisan migrate
