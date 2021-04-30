@@ -92,7 +92,24 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'category_id' => 'required'
+        ]);
+        try {
+            // update
+            $product->name = $request->name;
+            $product->category_id = $request->category_id;
+            $product->slug = Str::slug($request->name);
+            $product->price = $request->price;
+            $product->quantity = $request->quantity;
+            $product->description = $request->description;
+            
+            return redirect()-> back()->with('success','Product Updated Successfully.');
+
+        } catch (\Exception $e) {
+            return redirect()-> back()->with('error','Something went wrong! Please try again');
+        }
     }
 
     /**
