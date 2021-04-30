@@ -35,6 +35,7 @@
                 'slug' => $request->category_name,
             ]);
             return redirect()-> back()->with('success','Category Created Successfully.');
+            // return redirect('/admin/products')->with('success','Product Created Successfully.');
         } catch (\Exception $e) {
             \Log::error('Category Created: '.$e->getMessage());
             return redirect()-> back()->with('error','Something went wrong! Please try again');

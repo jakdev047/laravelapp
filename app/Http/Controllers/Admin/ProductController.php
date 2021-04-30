@@ -54,7 +54,7 @@ class ProductController extends Controller
                 'quantity' => $request->quantity,
                 'description' => $request->description,
             ]);
-            return redirect()-> back()->with('success','Product Created Successfully.');
+            return redirect('/admin/products')->with('success','Product Created Successfully.');
         } catch (\Exception $e) {
             return redirect()-> back()->with('error','Something went wrong! Please try again');
         }
@@ -104,8 +104,9 @@ class ProductController extends Controller
             $product->price = $request->price;
             $product->quantity = $request->quantity;
             $product->description = $request->description;
+            $product->update();
             
-            return redirect()-> back()->with('success','Product Updated Successfully.');
+            return redirect('/admin/products')->with('success','Product Updated Successfully.');
 
         } catch (\Exception $e) {
             return redirect()-> back()->with('error','Something went wrong! Please try again');
@@ -120,6 +121,15 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        try {
+
+            // delete value
+            $product->delete();
+            
+            return redirect()-> back()->with('success','Product Deleted Successfully.');
+        } catch (\Exception $e) {
+            // \Log::error('Category Created: '.$e->getMessage());
+            return redirect()-> back()->with('error','Something went wrong! Please try again');
+        }
     }
 }
