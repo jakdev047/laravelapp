@@ -1,0 +1,22 @@
+............ Controller Part ...............
+
+try {
+    // slug
+    $slug = Str::slug($request->name); // Demo => demo
+
+    // for image
+    $imageName =  $slug.'.'.$request->file('image')->getClientOriginalExtension(); // demo.jpg
+    $imageNameWithPath =  'uploads/products/'.$imageName;  // uploads/products/demo.jpg
+    $request->file('image')->storeAs('public/',$imageNameWithPath); // public/uploads/products/demo.jpg
+
+    Product::create([
+        'name' => $request->name,
+        'category_id' => $request->category_id,
+        'slug' => $slug,
+        'price' => $request->price,
+        'quantity' => $request->quantity,
+        'image' => $imageNameWithPath,
+        'description' => $request->description,
+    ]);
+    return redirect('/admin/products')->with('success','Product Created Successfully.');
+} 
