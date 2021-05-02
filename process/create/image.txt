@@ -6,8 +6,12 @@ try {
 
     // for image
     $imageName =  $slug.'.'.$request->file('image')->getClientOriginalExtension(); // demo.jpg
-    $imageNameWithPath =  'uploads/products/'.$imageName;  // uploads/products/demo.jpg
-    $request->file('image')->storeAs('public/',$imageNameWithPath); // public/uploads/products/demo.jpg
+
+    $imageNameWithPath =  'products/'.$imageName;  // products/demo.jpg for uploads storage folder
+
+    $request->file('image')->storeAs('public/',$imageNameWithPath); // img store in storage folder
+
+    $imageNameWithDBPath =  'storage/'.$imageNameWithPath;  // products/demo.jpg for uploads storage folder
 
     Product::create([
         'name' => $request->name,
@@ -15,8 +19,8 @@ try {
         'slug' => $slug,
         'price' => $request->price,
         'quantity' => $request->quantity,
-        'image' => $imageNameWithPath,
+        'image' => $imageNameWithDBPath,
         'description' => $request->description,
     ]);
     return redirect('/admin/products')->with('success','Product Created Successfully.');
-} 
+}

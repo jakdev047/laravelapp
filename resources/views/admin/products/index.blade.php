@@ -38,6 +38,7 @@
                                                 <tr>
                                                     <th>Sl</th>
                                                     <th>Name</th>
+                                                    <th>Image</th>
                                                     <th>Slug</th>
                                                     <th>Price</th>
                                                     <th>Quantity</th>
@@ -49,6 +50,9 @@
                                                 @foreach ($products as $item)
                                                     <tr>
                                                         <td>{{ $item->id }}</td>
+                                                        <td>
+                                                            <img width="60" src="{{ asset($item->image) }}" />
+                                                        </td>
                                                         <td>{{ $item->name }}</td>
                                                         <td>{{ $item->slug }}</td>
                                                         <td>{{ $item->price }}</td>

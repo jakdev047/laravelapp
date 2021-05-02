@@ -1,0 +1,6 @@
+............ Command Part ...............
+php artisan storage:link (public folder conected to storage/app/public folder)
+
+<td>
+    <img width="60" src="{{ asset($item->image) }}" />
+</td>S
