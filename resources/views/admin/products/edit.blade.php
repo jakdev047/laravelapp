@@ -33,7 +33,8 @@
                                         @if (session('error'))
                                             <div class="mb-2 alert alert-danger">{{ session('error') }}</div>
                                         @endif
-                                        <form action="{{ route('products.update', $product->id) }}" method="POST">
+                                        <form action="{{ route('products.update', $product->id) }}" method="POST"
+                                            enctype="multipart/form-data">
                                             @method('PUT')
                                             @csrf
                                             <div class="form-group">
@@ -89,8 +90,8 @@
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <textarea name="description" cols="15" rows="5" class="form-control">
-                                                                            {{ $product->description }}
-                                                                        </textarea>
+                                                                                {{ $product->description }}
+                                                                            </textarea>
                                                 @error('description')
                                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                                 @enderror

@@ -120,8 +120,6 @@ class ProductController extends Controller
                 $imageNameWithPath =  'products/'.$imageName;  // products/demo.jpg for uploads storage folder
                 $request->file('image')->storeAs('public/',$imageNameWithPath); // img store in storage folder
                 $imageNameWithPath =  'storage/'.$imageNameWithPath;  // products/demo.jpg for uploads storage folder
-
-                $product->image = $imageNameWithPath;
             }
 
             // exist image check

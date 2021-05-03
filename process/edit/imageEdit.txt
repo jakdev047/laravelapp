@@ -1,0 +1,48 @@
+............ Controller Part ...............
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
+
+public function update(Request $request, Product $product)
+{
+    $request->validate([
+        'name' => 'required|max:255',
+        'category_id' => 'required'
+    ]);
+    try {
+
+        // slug
+        $slug = Str::slug($request->name); // Demo => demo
+        $imageNameWithPath  = '';
+
+        // file check
+        if($request->hasFile('image')) {
+            // for image
+            $imageName =  $slug.'.'.$request->file('image')->getClientOriginalExtension(); // demo.jpg
+            $imageNameWithPath =  'products/'.$imageName;  // products/demo.jpg for uploads storage folder
+            $request->file('image')->storeAs('public/',$imageNameWithPath); // img store in storage folder
+            $imageNameWithPath =  'storage/'.$imageNameWithPath;  // products/demo.jpg for uploads storage folder
+        }
+
+        // exist image check
+        if(!empty($imageNameWithPath)) {
+            // image path replace (storage/products/demo.jpg to public/products/demo.jpg)
+            Storage::delete(str_replace("storage","public",$product->image));
+            $product->image = $imageNameWithPath;
+        }
+
+        // update
+        $product->name = $request->name;
+        $product->category_id = $request->category_id;
+        $product->slug = $slug;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->description = $request->description;
+        $product->update();
+        
+        return redirect('/admin/products')->with('success','Product Updated Successfully.');
+
+    } catch (\Exception $e) {
+        return redirect()-> back()->with('error','Something went wrong! Please try again');
+    }
+}
