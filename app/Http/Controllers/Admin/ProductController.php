@@ -7,7 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -108,10 +108,33 @@ class ProductController extends Controller
             'category_id' => 'required'
         ]);
         try {
+
+            // slug
+            $slug = Str::slug($request->name); // Demo => demo
+            $imageNameWithPath  = '';
+
+            // file check
+            if($request->hasFile('image')) {
+                // for image
+                $imageName =  $slug.'.'.$request->file('image')->getClientOriginalExtension(); // demo.jpg
+                $imageNameWithPath =  'products/'.$imageName;  // products/demo.jpg for uploads storage folder
+                $request->file('image')->storeAs('public/',$imageNameWithPath); // img store in storage folder
+                $imageNameWithPath =  'storage/'.$imageNameWithPath;  // products/demo.jpg for uploads storage folder
+
+                $product->image = $imageNameWithPath;
+            }
+
+            // exist image check
+            if(!empty($imageNameWithPath)) {
+                // image path replace (storage/products/demo.jpg to public/products/demo.jpg)
+                Storage::delete(str_replace("storage","public",$product->image));
+                $product->image = $imageNameWithPath;
+            }
+
             // update
             $product->name = $request->name;
             $product->category_id = $request->category_id;
-            $product->slug = Str::slug($request->name);
+            $product->slug = $slug;
             $product->price = $request->price;
             $product->quantity = $request->quantity;
             $product->description = $request->description;

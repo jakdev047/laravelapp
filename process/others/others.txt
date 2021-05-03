@@ -50,3 +50,7 @@ protected $fillable = [
     'image',
     'description'
 ];
+
+............ Storage Command Part ...............
+
+php artisan storage:link

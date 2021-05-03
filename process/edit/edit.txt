@@ -48,6 +48,18 @@ public function update(Request $request,$id) {
             @enderror
         </div>
         <div class="form-group">
+            <label>Image</label>
+            <input type="file" name="image">
+            @error('image')
+                <p class="mt-2 text-danger">{{ $message }}</p>
+            @enderror
+        </div>
+        @if (!empty($category->image))
+            <div class="form-group">
+                <img width="200" src="{{ asset($category->image) }}">
+            </div>
+        @endif
+        <div class="form-group">
             <input type="submit" class="btn btn-primary" Value="Update">
         </div>
     </form>

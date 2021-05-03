@@ -81,11 +81,16 @@
                                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
+                                            @if (!empty($product->image))
+                                                <div class="form-group">
+                                                    <img width="200" src="{{ asset($product->image) }}">
+                                                </div>
+                                            @endif
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <textarea name="description" cols="15" rows="5" class="form-control">
-                                                            {{ $product->description }}
-                                                        </textarea>
+                                                                            {{ $product->description }}
+                                                                        </textarea>
                                                 @error('description')
                                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                                 @enderror
