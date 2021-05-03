@@ -1,0 +1,39 @@
+php artisan make:migration add_deleted_at_to_products
+
+............ Migration Command Part ...............
+
+public function up()
+{
+    Schema::table('products', function (Blueprint $table) {
+        $table->softDeletes();
+    });
+}
+
+public function down()
+{
+    Schema::table('products', function (Blueprint $table) {
+        $table->dropColumn('deleted_at');
+    });
+}
+
+php artisan migrate
+
+............ Modal Part ...............
+
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Product extends Model
+{
+    use SoftDeletes;
+    use HasFactory;
+
+    protected $fillable = [
+        'category_id',
+        'name',
+        'slug',
+        'price',
+        'quantity',
+        'image',
+        'description'
+    ];
+}
