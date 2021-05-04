@@ -5,7 +5,10 @@
           <h5>Title</h5>
           <p>Sidebar content</p>
           <div>
-              <button type="button" class="btn btn-primary">Logout</button>
+              <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="btn btn-primary">Logout</button>
+              </form>
           </div>
       </div>
   </aside>

@@ -1,0 +1,30 @@
+............ Info Part ...............
+
+jetstream laravel
+
+# Install
+    composer require laravel/jetstream
+
+# Install Jetstream With Livewire  
+    php artisan jetstream:install livewire
+
+# Finalizing The Installation
+    npm install
+    npm run dev
+    php artisan migrate
+ 
+# Livewire
+
+    php artisan vendor:publish --tag=jetstream-views
+
+# Inertia
+    npm run dev
+
+
+# Folder
+    resource -> views -> api, auth, layouts, profile, vendor, dashboard navigation-menu, policy, terms
+
+# config
+    fortify ( feature control)
+    jetstream
+    sanctum

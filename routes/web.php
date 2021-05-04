@@ -5,27 +5,29 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
-// admin
+// route group
+Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function(){
 
-// Route::get('/admin', function () {
-//     return view('admin.index');
-// });
+    // admin
+    Route::get('/',[AdminController::class,'index']);
 
-Route::get('/admin',[AdminController::class,'index']);
+    // category
+    Route::get('category',[CategoryController::class,'index'])->name('categories.all'); // all create page show
+    Route::get('category/create',[CategoryController::class,'create'])->name('categories.create'); // create page show
+    Route::post('category',[CategoryController::class,'store'])->name('categories.store'); // create category
+    Route::get('category/edit/{id}',[CategoryController::class,'edit'])->name('categories.edit'); // edit page show
+    Route::put('category/update/{id}',[CategoryController::class,'update'])->name('categories.update'); // update category
+    Route::delete('category/delete/{id}',[CategoryController::class,'destroy'])->name('categories.destroy'); // delete category
 
-// category
-Route::get('/admin/category',[CategoryController::class,'index'])->name('categories.all'); 
-// all create page show
-Route::get('/admin/category/create',[CategoryController::class,'create'])->name('categories.create'); // create page show
-Route::post('/admin/category',[CategoryController::class,'store'])->name('categories.store'); // create category
-Route::get('/admin/category/edit/{id}',[CategoryController::class,'edit'])->name('categories.edit'); // edit page show
-Route::put('/admin/category/update/{id}',[CategoryController::class,'update'])->name('categories.update'); // update category
-Route::delete('/admin/category/delete/{id}',[CategoryController::class,'destroy'])->name('categories.destroy'); // delete category
-
-// product
-Route::resource('admin/products',ProductController::class);
+    // product
+    Route::resource('products',ProductController::class);
+});
 
 //  laravel welcome
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
