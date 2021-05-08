@@ -23,9 +23,9 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function
     Route::resource('products',ProductController::class);
 });
 
-//  laravel welcome
+//  Frontend
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
