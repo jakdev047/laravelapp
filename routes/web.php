@@ -27,6 +27,12 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function
 Route::get('/', function () {
     return view('frontend.home');
 });
+Route::get('/product/{slug}', function () {
+    return view('frontend.product');
+});
+Route::get('/checkout', function () {
+    return view('frontend.checkout');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

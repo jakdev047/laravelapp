@@ -11,7 +11,7 @@
                 <div class="card">
                     <img src="https://via.placeholder.com/1000" class="card-img-top" alt="image">
                     <div class="card-body">
-                        <a href="#">
+                        <a href="/product/1">
                             <h5 class="card-title text-info">
                                 Title
                             </h5>
