@@ -1,0 +1,75 @@
+............ Config Part ...............
+
+# install
+    npm i vue
+
+# webpack compile ( webpack.mix.js)
+
+    mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/vue-app/main.js', 'public/js/vue-app').vue()
+
+# compile command
+    npm run watch
+
+............ View Part ...............
+
+# route
+    Route::get('/', function () {
+        return view('frontend.index');
+    });
+
+# main views page (frontend/index.blade.php)
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>...</head>
+
+    <body>
+        <div id="app"></div>
+
+        {{-- js file inclue --}}
+        <script src="{{ mix('js/vue-app/main.js') }}"></script>
+    </body>
+
+    </html>
+
+# main Vue js page (resources/js/vue-app/main.js)
+
+    import Vue from "vue";
+    import App from "./App";
+
+    const app = new Vue({
+        render: h => h(App)
+    }).$mount("#app");
+
+    [NB: vue-app(main,App,components,pages)]
+
+# main Demo Component (resources/js/vue-app/components/Demo.vue)
+
+    <template>
+        <div>
+            <h2>Demo</h2>
+        </div>
+    </template>
+
+# main App Component (resources/js/vue-app/App.vue)
+
+    <template>
+        <div class="App">
+            <app-demo />
+            <h2>App Component</h2>
+        </div>
+    </template>
+
+    <script>
+        import AppDemo from './components/Demo';
+
+        export default {
+            components: { AppDemo }
+        }
+    </script>
+
+    <style scoped>
+        h2 {color: #eb1b33; }
+    </style>

@@ -25,7 +25,7 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function
 
 //  Frontend
 Route::get('/', function () {
-    return view('frontend.home');
+    return view('frontend.index');
 });
 Route::get('/product/{slug}', function () {
     return view('frontend.product');
