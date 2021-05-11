@@ -1,0 +1,93 @@
+............ Config Part ...............
+
+# install
+    npm install vue-router
+
+............ Router Part ...............
+
+# router page craete (router/index.js)
+
+    import Vue from "vue";
+    import VueRouter from "vue-router";
+
+    // pages
+    import ProductPage from "../pages/Product";
+
+    Vue.use(VueRouter);
+
+    const router = new VueRouter({
+        mode: "history", // hash
+        base: "/", 
+        fallback: true,
+        routes: [
+            {
+                path: "/product/:slug",
+                name: "product-page",
+                component: ProductPage
+            },
+        ]
+    });
+
+    export default router;
+
+# router page connect with main.js 
+
+    import router from "./router";
+
+    const app = new Vue({
+        router,
+        render: h => h(App)
+    }).$mount("#app");
+
+# router view show (components/View)
+
+    <template>
+        <div class="app-container">
+            
+            <transition mode="out-in">
+            <router-view/>
+            </transition>
+        </div>
+    </template>
+
+# router view Connect with App.vue (components/View)
+
+    <template>
+        <div class="App">
+            <app-header />
+            <app-view />
+            <app-footer />
+        </div>
+    </template>
+
+    <script>
+
+        // components
+        import AppHeader from './components/Header';
+        import AppView from './components/View';
+        import AppFooter from './components/Footer';
+
+        export default {
+            components: {
+                AppHeader,
+                AppView,
+                AppFooter,
+            }
+        }
+    </script>
+
+    <style>
+        /*  transition view */
+        .v-enter,
+        .v-leave-to {
+        opacity: 0;
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+        transition: opacity .5s;
+        }
+    </style>
+
+# router link 
+    <router-link to="/product/1" class="card-title text-info">Title</router-link>

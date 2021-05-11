@@ -14,9 +14,9 @@
 ............ View Part ...............
 
 # route
-    Route::get('/', function () {
+    Route::get('/{path}', function () {
         return view('frontend.index');
-    });
+    })->where('path','.*');
 
 # main views page (frontend/index.blade.php)
 

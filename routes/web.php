@@ -23,17 +23,11 @@ Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function
     Route::resource('products',ProductController::class);
 });
 
-//  Frontend
-Route::get('/', function () {
-    return view('frontend.index');
-});
-Route::get('/product/{slug}', function () {
-    return view('frontend.product');
-});
-Route::get('/checkout', function () {
-    return view('frontend.checkout');
-});
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+//  Frontend
+Route::get('/{path}', function () {
+    return view('frontend.index');
+})->where('path','.*');

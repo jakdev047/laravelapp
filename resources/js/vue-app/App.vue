@@ -3,11 +3,7 @@
 
         <app-header />
 
-        <home-page/>
-
-        <product-page/>
-
-        <checkout-page/>
+        <app-view />
 
         <app-footer />
 
@@ -19,22 +15,27 @@
 
     // components
     import AppHeader from './components/Header';
+    import AppView from './components/View';
     import AppFooter from './components/Footer';
-
-    // pages
-    import HomePage from './pages/Home';
-    import ProductPage from './pages/Product';
-    import CheckoutPage from './pages/Checkout';
 
     export default {
         components: {
             AppHeader,
+            AppView,
             AppFooter,
-            HomePage,
-            ProductPage,
-            CheckoutPage
         }
     }
 </script>
 
-<style scoped></style>
+<style>
+    /*  transition view */
+    .v-enter,
+    .v-leave-to {
+    opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+    transition: opacity .5s;
+    }
+</style>
