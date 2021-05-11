@@ -91,3 +91,8 @@
 
 # router link 
     <router-link to="/product/1" class="card-title text-info">Title</router-link>
+
+# dynamic router link 
+    <router-link :to="{name: 'product-page', params: {'slug': '1'}}">
+    Title
+    </router-link>

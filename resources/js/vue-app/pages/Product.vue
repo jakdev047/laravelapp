@@ -34,7 +34,9 @@
                                 <input type="number" name="quantity" value="1" class="form-control mr-3">
                             </div>
                             <div class="col-lg-2">
-                                <button type="submit" class="btn btn-success">Buy Now</button>
+                                <router-link :to="{name: 'checkout-page'}" class="btn btn-warning">
+                                Buy Now
+                                </router-link>
                             </div>
                         </div>
                     </form>
