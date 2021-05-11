@@ -82,7 +82,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: 'Product List',
-      products: [{
+      products: []
+    };
+  },
+  methods: {
+    getProducts: function getProducts() {
+      var dbProducts = [{
         title: 'IPhone-555',
         price: 75000,
         image: 'https://via.placeholder.com/1000'
@@ -90,16 +95,16 @@ __webpack_require__.r(__webpack_exports__);
         title: 'IPhone-666',
         price: 85000,
         image: 'https://via.placeholder.com/1000'
-      }]
-    };
-  },
-  methods: {
-    welcomeMsg: function welcomeMsg() {
-      return alert('Welcome ECom!!!');
+      }];
+      return dbProducts;
     }
   },
+  created: function created() {
+    this.products = this.getProducts();
+  },
   mounted: function mounted() {
-    this.welcomeMsg();
+    // this.getProducts();
+    console.log("mounted");
   },
   computed: {// vuex call
   }

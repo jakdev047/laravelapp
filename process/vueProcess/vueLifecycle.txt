@@ -1,0 +1,37 @@
+............ Life Cycle Part ...............
+
+data(){
+    return {
+        products: [];
+    }
+}
+
+methods: {
+    getProducts(){
+        const dbProducts = [
+            {
+                title: 'IPhone-555',
+                price: 75000,
+                image: 'https://via.placeholder.com/1000',
+            },
+            {
+                title: 'IPhone-666',
+                price: 85000,
+                image: 'https://via.placeholder.com/1000',
+            },
+        ];
+        return dbProducts;
+    }
+}
+
+beforeCreate() {}
+
+craeted() {
+    this.products = this.getProducts();
+}
+
+beforeMount() {}
+
+mounted () {
+    
+},

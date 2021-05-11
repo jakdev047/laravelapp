@@ -27,26 +27,31 @@
         name: 'home-page',
         data:()=>({
             title: 'Product List',
-            products: [
-                {
-                    title: 'IPhone-555',
-                    price: 75000,
-                    image: 'https://via.placeholder.com/1000',
-                },
-                {
-                    title: 'IPhone-666',
-                    price: 85000,
-                    image: 'https://via.placeholder.com/1000',
-                },
-            ] 
+            products: [] 
         }),
         methods:{
-            welcomeMsg(){
-                return alert('Welcome ECom!!!')
+            getProducts(){
+                const dbProducts = [
+                    {
+                        title: 'IPhone-555',
+                        price: 75000,
+                        image: 'https://via.placeholder.com/1000',
+                    },
+                    {
+                        title: 'IPhone-666',
+                        price: 85000,
+                        image: 'https://via.placeholder.com/1000',
+                    },
+                ];
+                return dbProducts;
             }
         },
+        created () {
+            this.products = this.getProducts();
+        },
         mounted () {
-            this.welcomeMsg();
+            // this.getProducts();
+            console.log("mounted");
         },
         computed : {
             // vuex call
