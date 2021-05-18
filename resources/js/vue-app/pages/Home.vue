@@ -5,17 +5,7 @@
             <hr />
             <div class="row">
                 <div class="col-md-3 my-2" v-for="(product,key) in products" :key="key">
-                    <div class="card">
-                        <img :src="product.image" class="card-img-top" alt="image">
-                        <div class="card-body">
-                            <router-link 
-                                :to="{name: 'product-page', params: {'slug': '1'}}" class="card-title text-info"
-                            >
-                            {{product.title}}
-                            </router-link>
-                            <p class="card-text">{{product.price}} BDT</p>
-                        </div>
-                    </div>
+                    <product-item :product="product" />
                 </div>
             </div>
         </div>
@@ -23,8 +13,12 @@
 </template>
 
 <script>
+    import ProductItem from "../components/ProductItem";
     export default {
         name: 'home-page',
+        components: {
+            ProductItem
+        },
         data:()=>({
             title: 'Product List',
             products: [] 
@@ -34,11 +28,13 @@
                 const dbProducts = [
                     {
                         title: 'IPhone-555',
+                        slug: 'product-slug1',
                         price: 75000,
                         image: 'https://via.placeholder.com/1000',
                     },
                     {
                         title: 'IPhone-666',
+                        slug: 'product-slug2',
                         price: 85000,
                         image: 'https://via.placeholder.com/1000',
                     },
