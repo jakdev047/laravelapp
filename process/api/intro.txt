@@ -1,0 +1,28 @@
+............ Route Part ...............
+
+# api (routes/api.php)
+
+    use App\Http\Controllers\Api\ProductApiController;
+
+    Route::get('/products',[ProductApiController::class,'productList']);
+
+
+............ Controller Part ...............
+
+# command 
+    php artisan make:controller Api/ProductApiController 
+
+# method 
+
+    use App\Models\Product;
+    use Symfony\Component\HTTPFoundation\Response;
+
+    public function productList(){
+        $products = Product::all();
+        $reponse = [
+            'success' => true,
+            'message' => 'Data Found',
+            'data' => $products
+        ];
+        return response()->json($reponse,Response::HTTP_OK);
+    }
