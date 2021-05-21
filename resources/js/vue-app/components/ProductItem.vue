@@ -5,7 +5,7 @@
             <router-link 
                 :to="{name: 'product-page', params: {'slug': product.slug}}" class="card-title text-info"
             >
-            {{product.title}}
+            {{product.name}}
             </router-link>
             <p class="card-text">{{product.price}} BDT</p>
         </div>

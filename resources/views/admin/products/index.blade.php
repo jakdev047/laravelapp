@@ -37,8 +37,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>Sl</th>
-                                                    <th>Name</th>
                                                     <th>Image</th>
+                                                    <th>Name</th>
                                                     <th>Slug</th>
                                                     <th>Price</th>
                                                     <th>Quantity</th>

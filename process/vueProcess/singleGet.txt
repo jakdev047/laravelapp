@@ -1,0 +1,25 @@
+............JS Part ...............
+
+# data initialize 
+
+    data:()=>({
+        product: {}
+    }),
+
+# method
+    methods:{
+        async getProduct(){
+            const res  = await axios.get(`http://localhost:8000/api/product/${this.$route?.params?.slug}`);
+            return res?.data?.data;
+        }
+    },
+
+# method call
+
+    async created () {
+        this.product = await this.getProduct();
+    },
+
+............ HTML Part ...............
+
+{{ product.name}}

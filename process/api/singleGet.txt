@@ -1,0 +1,25 @@
+............ Route Part ...............
+
+# api (routes/api.php)
+
+    use App\Http\Controllers\Api\ProductApiController;
+
+    Route::get('/product/{slug}',[ProductApiController::class,'getProductBySlug']);
+
+
+............ Controller Part ...............
+
+# method 
+
+    use App\Models\Product;
+    use Symfony\Component\HTTPFoundation\Response;
+
+    public function getProductBySlug($slug){
+        $product = Product::where('slug',$slug)->first();
+        $reponse = [
+            'success' => true,
+            'message' => 'Single Product Found',
+            'data' => $product
+        ];
+        return response()->json($reponse,Response::HTTP_OK);
+    }

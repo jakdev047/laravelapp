@@ -18,4 +18,14 @@ class ProductApiController extends Controller
         ];
         return response()->json($reponse,Response::HTTP_OK);
     }
+    
+    public function getProductBySlug($slug){
+        $product = Product::where('slug',$slug)->first();
+        $reponse = [
+            'success' => true,
+            'message' => 'Single Product Found',
+            'data' => $product
+        ];
+        return response()->json($reponse,Response::HTTP_OK);
+    }
 }

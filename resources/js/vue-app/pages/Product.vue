@@ -5,15 +5,15 @@
             <div class="col-md-12 mt-3">
                 <div class="media">
                     <div style="width: 30%" class="mr-5">
-                        <img src="https://via.placeholder.com/1000" class="card-img-top" alt="image">
+                        <img :src="`/${product.image}`" class="card-img-top" alt="image">
                     </div>
                     <div class="media-body">
-                        <h5 class="card-title">Title</h5>
+                        <h5 class="card-title">{{ product.name}}</h5>
                         <p class="card-text">
-                            Price: 40 BDT
+                            Price: {{ product.price }} BDT
                         </p>
                         <p class="card-text">
-                            Quantity: 12
+                            Quantity: {{ product.quantity }}
                         </p>
                     </div>
                 </div>
@@ -21,12 +21,8 @@
         </div>
         <div class="row">
             <div class="col-md-12 mt-3">
-                <h2>Laptop</h2>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto tempore excepturi quod quae ad
-                    optio vel maiores et aperiam modi. Consequuntur ratione rem corrupti! Autem doloremque veniam iusto quis
-                    doloribus.
-                </p>
+                <h2>{{ product.name }}</h2>
+                <p>{{ product.description }}</p>
                 <div class="buy-now my-3">
                     <form action="#">
                         <div class="row">
@@ -45,3 +41,21 @@
         </div>
     </div>
 </template>
+
+<script>
+    import axios from "axios";
+    export default {
+        data:()=>({
+            product: {}
+        }),
+        methods:{
+            async getProduct(){
+                const res  = await axios.get(`http://localhost:8000/api/product/${this.$route?.params?.slug}`);
+                return res?.data?.data;
+            }
+        },
+        async created () {
+            this.product = await this.getProduct();
+        },
+    }
+</script>
