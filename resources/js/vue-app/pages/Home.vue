@@ -13,6 +13,7 @@
 </template>
 
 <script>
+    import axios from "axios";
     import ProductItem from "../components/ProductItem";
     export default {
         name: 'home-page',
@@ -24,29 +25,15 @@
             products: [] 
         }),
         methods:{
-            getProducts(){
-                const dbProducts = [
-                    {
-                        title: 'IPhone-555',
-                        slug: 'product-slug1',
-                        price: 75000,
-                        image: 'https://via.placeholder.com/1000',
-                    },
-                    {
-                        title: 'IPhone-666',
-                        slug: 'product-slug2',
-                        price: 85000,
-                        image: 'https://via.placeholder.com/1000',
-                    },
-                ];
-                return dbProducts;
+            async getProducts(){
+                const res  = await axios.get('http://localhost:8000/api/products');
+                return res?.data?.data;
             }
         },
-        created () {
-            this.products = this.getProducts();
+        async created () {
+            this.products = await this.getProducts();
         },
         mounted () {
-            // this.getProducts();
             console.log("mounted");
         },
         computed : {
