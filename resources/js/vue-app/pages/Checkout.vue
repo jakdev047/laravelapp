@@ -5,21 +5,21 @@
             <div class="col-md-6 mt-3">
                 <div class="media">
                     <div style="width: 30%" class="mr-5">
-                        <img src="https://via.placeholder.com/1000" class="card-img-top" alt="image">
+                        <img :src="product.image" class="card-img-top" alt="image">
                     </div>
                     <div class="media-body">
-                        <h5 class="card-title">Title</h5>
+                        <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">
-                            Price: 40 BDT
+                            Price: {{ product.price }} BDT
                         </p>
                         <p class="card-text">
-                            Quantity: 12
+                            Quantity: {{ product.quantity }}
                         </p>
                     </div>
                 </div>
                 <hr />
                 <div class="checkout-total text-right">
-                    <strong>Total: 500 BDT Only</strong>
+                    <strong>Total: {{ product.price * product.quantity }} BDT Only</strong>
                 </div>
             </div>
             <div class="col-md-6">
@@ -58,3 +58,22 @@
         </div>
     </div>
 </template>
+
+<script>
+    import axios from "axios";
+    export default {
+        data:()=>({
+            product: {},
+            checkoutQuantity: 1,
+        }),
+        methods:{
+            async getProduct(){
+                const res  = await axios.get(`http://localhost:8000/api/product/${this.$route?.query?.product}`);
+                return res?.data?.data;
+            }
+        },
+        async created () {
+            this.product = await this.getProduct();
+        },
+    }
+</script>

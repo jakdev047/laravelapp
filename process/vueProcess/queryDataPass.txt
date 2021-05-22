@@ -1,0 +1,24 @@
+# html
+    <input type="number" min="1" name="quantity" v-model.number="checkoutQuantity" class="form-control mr-3">
+
+    <router-link :to="{name: 'checkout-page', query: {'quantity': checkoutQuantity, 'product': product.slug} }"> Buy Now </router-link>
+
+# js    
+    data:()=>({
+        checkoutQuantity: 1,
+    }),
+
+# checkout part  
+    data:()=>({
+        product: {},
+        checkoutQuantity: 1,
+    }),
+    methods:{
+        async getProduct(){
+            const res  = await axios.get(`http://localhost:8000/api/product/${this.$route?.query?.product}`);
+            return res?.data?.data;
+        }
+    },
+    async created () {
+        this.product = await this.getProduct();
+    },

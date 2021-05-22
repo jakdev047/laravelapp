@@ -27,10 +27,10 @@
                     <form action="#">
                         <div class="row">
                             <div class="col-lg-1">
-                                <input type="number" name="quantity" value="1" class="form-control mr-3">
+                                <input type="number" min="1" name="quantity" v-model.number="checkoutQuantity" class="form-control mr-3">
                             </div>
                             <div class="col-lg-2">
-                                <router-link :to="{name: 'checkout-page'}" class="btn btn-warning">
+                                <router-link :to="{name: 'checkout-page', query: {'quantity': checkoutQuantity, 'product': product.slug} }" class="btn btn-warning">
                                 Buy Now
                                 </router-link>
                             </div>
@@ -46,7 +46,8 @@
     import axios from "axios";
     export default {
         data:()=>({
-            product: {}
+            product: {},
+            checkoutQuantity: 1,
         }),
         methods:{
             async getProduct(){
