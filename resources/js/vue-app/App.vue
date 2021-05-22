@@ -12,7 +12,6 @@
 
 
 <script>
-
     // components
     import AppHeader from './components/Header';
     import AppView from './components/View';
