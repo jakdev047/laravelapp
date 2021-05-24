@@ -44,13 +44,16 @@
     const store = new Vuex.Store({
         modules: {},
         state: {
-            products: []
-        },
-        mutations: {
-        // 
+            // data initialize
         },
         actions: {
-        //
+            // get data source method
+        },
+        mutations: {
+            // The only way to actually change state in a Vuex store is by committing a mutation
+        },
+        getters: {
+            // data store in state 
         }
     })
     
@@ -63,3 +66,39 @@
         store,
         render: h => h(App)
     }).$mount("#app");
+
+
+............ Get ...............
+
+# vuex 
+    state: {
+      products: []
+    },
+    actions: {
+      async loadProducts({commit}){
+        const res  = await axios.get('http://localhost:8000/api/products');
+        const data =  res?.data?.data;
+        commit('SET_PRODUCTS',data);
+      }
+    },
+    mutations: {
+      SET_PRODUCTS(state,data){
+        state.products = data;
+      }
+    },
+    getters: {
+      getProducts(state) {
+        return state.products;
+      }
+    }
+
+# vue
+
+    data:()=>({
+        products: [] 
+    }),
+    methods:{},
+        async created () {
+        await this.$store.dispatch('loadProducts');
+        this.products =  this.$store.getters.getProducts;
+    },

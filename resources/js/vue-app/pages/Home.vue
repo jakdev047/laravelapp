@@ -13,7 +13,6 @@
 </template>
 
 <script>
-    import axios from "axios";
     import ProductItem from "../components/ProductItem";
     export default {
         name: 'home-page',
@@ -24,20 +23,12 @@
             title: 'Product List',
             products: [] 
         }),
-        methods:{
-            async getProducts(){
-                const res  = await axios.get('http://localhost:8000/api/products');
-                return res?.data?.data;
-            }
-        },
+        methods:{},
         async created () {
-            this.products = await this.getProducts();
+          await this.$store.dispatch('loadProducts');
+          this.products =  this.$store.getters.getProducts;
         },
-        mounted () {
-            console.log("mounted");
-        },
-        computed : {
-            // vuex call
-        }
+        mounted () {},
+        computed : {}
     }
 </script>
