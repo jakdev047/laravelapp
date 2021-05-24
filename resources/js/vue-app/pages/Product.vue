@@ -43,20 +43,14 @@
 </template>
 
 <script>
-    import axios from "axios";
     export default {
         data:()=>({
             product: {},
             checkoutQuantity: 1,
         }),
-        methods:{
-            async getProduct(){
-                const res  = await axios.get(`http://localhost:8000/api/product/${this.$route?.params?.slug}`);
-                return res?.data?.data;
-            }
-        },
+        methods:{},
         async created () {
-            this.product = await this.getProduct();
+            this.product = this.$store.getters.getProductBySlug(this.$route?.params?.slug);
         },
     }
 </script>

@@ -24,6 +24,11 @@ const store = new Vuex.Store({
     getters: {
       getProducts(state) {
         return state.products;
+      },
+      getProductBySlug(state) {
+        return (slug) => {
+          return state.products.find(item => item.slug === slug)
+        }
       }
     }
   })

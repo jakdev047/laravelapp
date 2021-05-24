@@ -102,3 +102,24 @@
         await this.$store.dispatch('loadProducts');
         this.products =  this.$store.getters.getProducts;
     },
+
+............ Single Get ...............
+
+# vuex  
+
+    getters: {
+      getProductBySlug(state) {
+        return (slug) => {
+          return state.products.find(item => item.slug === slug)
+        }
+      }
+    }
+
+# vue
+
+    data:()=>({
+        product: {} 
+    }),
+    async created () {
+        this.product = this.$store.getters.getProductBySlug(this.$route?.params?.slug);
+    },
