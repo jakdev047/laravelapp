@@ -1,7 +1,15 @@
 ............ Config Part ...............
 
 # install
+
     npm i vue
+
+    or
+
+    npm i -g @vue/cli
+    vue --version
+    vue create project-name
+    npm run serve
 
 # webpack compile ( webpack.mix.js)
 

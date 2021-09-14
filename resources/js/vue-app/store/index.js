@@ -7,7 +7,11 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     modules: {},
     state: {
-      products: []
+      products: [],
+      checkoutData: {
+        quantity: null, 
+        product: null
+      }
     },
     actions: {
       async loadProducts({commit}){

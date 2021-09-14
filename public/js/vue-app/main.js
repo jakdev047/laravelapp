@@ -2197,8 +2197,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2206,7 +2204,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       checkoutQuantity: 1
     };
   },
-  methods: {},
+  methods: {
+    buyNow: function buyNow() {
+      this.$router.push({
+        name: 'checkout-page'
+      });
+    }
+  },
   created: function created() {
     var _this = this;
 
@@ -2307,7 +2311,11 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
 var store = new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
   modules: {},
   state: {
-    products: []
+    products: [],
+    checkoutData: {
+      quantity: null,
+      product: null
+    }
   },
   actions: {
     loadProducts: function loadProducts(_ref) {
@@ -4492,33 +4500,21 @@ var render = function() {
                 })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-lg-2" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-warning",
-                      attrs: {
-                        to: {
-                          name: "checkout-page",
-                          query: {
-                            quantity: _vm.checkoutQuantity,
-                            product: _vm.product.slug
-                          }
-                        }
+              _c("div", { staticClass: "col-lg-2" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.buyNow()
                       }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Buy Now\n                            "
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
+                    }
+                  },
+                  [_vm._v(" Buy Now ")]
+                )
+              ])
             ])
           ])
         ])

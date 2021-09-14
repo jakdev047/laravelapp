@@ -30,9 +30,7 @@
                                 <input type="number" min="1" name="quantity" v-model.number="checkoutQuantity" class="form-control mr-3">
                             </div>
                             <div class="col-lg-2">
-                                <router-link :to="{name: 'checkout-page', query: {'quantity': checkoutQuantity, 'product': product.slug} }" class="btn btn-warning">
-                                Buy Now
-                                </router-link>
+                                <button class="btn btn-warning" @click.prevent="buyNow()"> Buy Now </button>
                             </div>
                         </div>
                     </form>
@@ -48,7 +46,11 @@
             product: {},
             checkoutQuantity: 1,
         }),
-        methods:{},
+        methods:{
+            buyNow(){
+                this.$router.push({name:'checkout-page'})
+            }
+        },
         async created () {
             this.product = this.$store.getters.getProductBySlug(this.$route?.params?.slug);
         },
