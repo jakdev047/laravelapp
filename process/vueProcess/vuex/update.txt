@@ -1,0 +1,45 @@
+# vuex
+
+    const actions = {
+         async updateTodo({commit},payload) {
+            const res = await axios.put(`https://jsonplaceholder.typicode.com/todos/${payload.id}`,payload);
+            commit("updateTodo", res.data);
+        },
+    };
+
+    const mutations = {
+         updateTodo: (state, payload) => {
+            const index = state.todos.findIndex(todo => todo.id === payload.id);
+            if(index !== -1) {
+                state.todos.splice(index, 1,payload);
+            }
+        },
+    };
+
+# Vue
+
+    <div 
+        v-for="todo in allTodos" :key="todo.id" 
+        class="todo" 
+        @click="onClick(todo)" 
+
+        v-bind:class="{'is-complete':todo.completed}"
+    >
+        {{todo.title}}
+        <i class="fa fa-trash" @click="deleteTodo(todo.id)"></i>
+    </div> 
+
+    methods:{
+        ...mapActions({
+            updateTodo: 'updateTodo'
+        }),
+
+        onClick(todo){
+            const payload = {
+                id: todo.id,
+                title: todo.title,
+                completed: !todo.completed
+            }
+            this.updateTodo(payload);
+        }
+    },
