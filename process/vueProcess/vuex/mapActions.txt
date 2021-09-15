@@ -1,0 +1,82 @@
+# flow Chart
+==============
+    Vuex
+    ======
+        a. to create a actions (getTodos)
+        b. to create initial value in state (todos)
+        c. to set response data in mutation (setTodos)
+        d. to craete a getters (getTodos)
+    
+    Vue
+    ======
+        a. to create a actions in method (getTodos)
+        b. to call actions in created (getTodos)
+        c. to create getters in computed (allTodos)
+        d. data bind html template
+
+# Explain Chart
+===================
+
+    Vuex
+    ======
+        # to create a actions
+
+            const actions = {
+                async getTodos({ commit }) {
+                    const res= await axios.get(`https://jsonplaceholder.typicode.com/todos`);
+                    commit("setTodos", res.data);
+                },
+            };
+
+        # to create initial value in state
+
+            const state = {
+                todos: [],
+            };
+
+        # to set response data in mutation
+
+            const mutations = {
+                setTodos: (state, payload) => (state.todos = payload),
+            };
+
+        # to craete a getters
+
+            const getters = {
+                allTodos: (state) => {
+                    return state.todos;
+                },
+            };
+
+
+    Vue
+    ======
+        # to create a actions in method
+
+            methods:{
+                ...mapActions({
+                    getTodos: 'getTodos'
+                })
+            },
+
+        # to call actions in created
+
+            async created () {
+                this.getTodos();
+            },
+
+        # to create getters in computed
+
+            computed: {
+                ...mapGetters({
+                    allTodos: 'allTodos'
+                })
+            },
+
+        # data bind html template
+
+            <div class="todos">
+                <div v-for="todo in allTodos" :key="todo.id" class="todo">
+                    {{todo.title}}
+                </div>
+            </div>

@@ -1,0 +1,54 @@
+# todos.js
+===================
+const state = {
+    todos: [
+        { id: 1, title: "Todo One" },
+        { id: 2, title: "Todo Two" },
+    ],
+};
+
+const getters = {
+  // data store in state
+  allTodos: (state) => {
+    return state.todos;
+  },
+};
+
+export default {
+  state,
+  getters,
+};
+
+# store/index.js
+==================
+    import TodosModule from "./modules/todos";
+
+    const store = new Vuex.Store({
+        modules: {
+            todos: TodosModule,
+        },
+    });
+
+# Todo.vue
+=============
+    <template>
+        <div class="todos">
+            <div v-for="todo in allTodos" :key="todo.id" class="todo">
+                {{todo.title}}
+            </div>
+        </div>
+    </template>
+
+    <script>
+        import {mapGetters} from 'vuex';
+
+        export default {
+            name: 'todos-page',
+            computed: {
+                ...mapGetters({
+                    pageTitle: 'pageTitle',
+                    allTodos: 'allTodos'
+                })
+            }, 
+        }
+    </script>
