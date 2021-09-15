@@ -1,0 +1,27 @@
+# vuex
+
+    const actions = {
+        async filterTodos({commit},e) {
+            // get selected number
+            const limit = parseInt(e.target.options[e.target.options.selectedIndex].innerText);
+            const res = await axios.get(`https://jsonplaceholder.typicode.com/todos?_limit=${limit}`);
+            commit("setTodos", res.data);
+        },
+    };
+
+# Vue
+
+    <select @change="filterTodos($event)" class="form-control">
+        <option value="200">200</option>
+        <option value="100">100</option>
+        <option value="50">50</option>
+        <option value="20">20</option>
+        <option value="10">10</option>
+        <option value="5">5</option>
+    </select>
+
+    methods:{
+        ...mapActions({
+           filterTodos: 'filterTodos'
+        }),
+    },
