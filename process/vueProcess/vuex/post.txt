@@ -1,0 +1,33 @@
+# vuex
+
+    const actions = {
+        async addTodo({ commit }, title) {
+            const res = await axios.post(`https://jsonplaceholder.typicode.com/todos`, {
+            title,
+            complete: false,
+            });
+            commit("newTodo", res.data);
+        },
+    };
+
+    const mutations = {
+        newTodo: (state, payload) => state.todos.unshift(payload),
+    };
+
+# Vue
+
+    <form @submit="onSubmit">
+        <input type="text" v-model="title" placeholder="Add Todo..."/>
+        <input type="submit" value="Submit"/>
+    </form> 
+
+    data:()=>({ title: ''}),
+    methods:{
+        ...mapActions({
+            addTodo: 'addTodo'
+        }),
+        onSubmit(e) {
+            e.preventDefault();
+            this.addTodo(this.title);
+        }
+    },
