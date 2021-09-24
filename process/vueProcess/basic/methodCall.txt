@@ -1,0 +1,15 @@
+# method 
+=========== 
+
+    <h1>{{welcomeMethod('Welcome')}}</h1>
+
+    export default {
+        data:()=>({
+            title: 'Vue'
+        }),
+        methods:{
+            welcomeMethod(greetings) {
+                return `${greetings} ${this?.title}`;
+            }
+        },
+    }
