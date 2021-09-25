@@ -22,3 +22,23 @@
                 this.number += increment;
             }
         },
+
+# Two way Data baninding
+============================
+    a. html part
+
+        <h3>{{twData}}</h3>
+        <div class="form-group">
+            <input type="text" v-model="twData" class="form-control" />
+        </div>
+
+    b. js part
+
+        data:()=>({
+            twData: "Two Way Data Binding"
+        }),
+        methods:{
+            rementMethod(increment) {
+                this.number += increment;
+            }
+        },
