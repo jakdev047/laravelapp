@@ -42,3 +42,19 @@
                 this.number += increment;
             }
         },
+
+# Modifier
+============================
+    a. html part
+
+        <button @click.alt="modifier" class="btn btn-primary">Modifier</button>
+
+        [@click.alt, @click.prevent, @click.stop]
+
+    b. js part
+
+        methods:{
+            modifier(){
+                console.log("Modifier");
+            }
+        },
