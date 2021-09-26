@@ -1,0 +1,24 @@
+# VueLearning.vue 
+===================
+    <demo :propsTitle="propsTitle"/>
+
+    export default {
+        name: "vue-learning",
+        components: {
+            Demo,
+        },
+        data: () => ({
+            propsTitle: 'Props Title'
+        }),
+    };
+
+# Demo.vue 
+===================
+    <div class="my-3">
+        {{propsTitle}}
+    </div>
+
+    export default {
+        name: "demo",
+        props: ['propsTitle']
+    }
