@@ -1,0 +1,37 @@
+# child component ( Demo.vue ) 
+=================================
+    a. html part
+
+        <p @click="childEvent(propsTitle)">{{propsTitle}}</p>
+
+    b. js part
+
+        props: ['propsTitle'],
+        methods:{
+            childEvent(title) {
+                this.$emit("titleChange",{title})
+            }
+        }
+
+# parent component ( VueLearning.vue ) 
+========================================
+    a. html part
+
+        <demo :propsTitle="propsTitle" @titleChange="titleChange"/>
+
+    b. js part
+
+        export default {
+            name: "vue-learning",
+            components: {
+                Demo,
+            },
+            data: () => ({
+                propsTitle: 'Props Title'
+            }),
+            methods: {
+                titleChange(payload) {
+                    console.log("payload",payload)
+                }
+            },
+        };
