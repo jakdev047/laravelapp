@@ -1,0 +1,29 @@
+# filter 
+================
+
+    # vueLearning.vue
+
+        <span>{{ user.name | nameSnippet }}</span>
+
+    # utilities/index.js
+
+        import Vue from "vue";
+
+        // word filter
+
+        Vue.filter("nameSnippet", (val) => {
+            if (!val || typeof val !== "string") return "";
+            val = val.slice(0, 10);
+            return val;
+        });
+
+    # main.js
+
+        import utilities from './utilities';
+
+        new Vue({
+            utilities,
+            router,
+            store,
+            render: h => h(App),
+        }).$mount('#app')
