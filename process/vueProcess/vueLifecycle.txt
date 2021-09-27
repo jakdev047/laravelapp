@@ -35,3 +35,9 @@ beforeMount() {}
 mounted () {
     
 },
+
+after evnt 
+===========
+
+beforeUpdate() {}
+update() {}
