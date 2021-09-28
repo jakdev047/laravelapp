@@ -1,0 +1,31 @@
+# html
+==========   
+
+    <input type="text" v-model="searchUser" class="form-control" placeholder="Search..." />
+
+    <div v-for="user in filterSearch" :key="user.id">
+        <span>{{ user.name | nameSnippet }}</span>
+    </div>
+
+# js
+==========  
+
+    data: () => ({
+        users: [],
+        searchUser: '',
+    }),
+    computed:{
+        filterSearch(){
+            return this.users.filter(user =>  user.name.match(this.searchUser))
+        }
+    },
+
+
+
+
+
+
+
+
+
+
