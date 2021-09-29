@@ -1,0 +1,32 @@
+# html
+==========  
+
+    a. pages/Profile.vue
+
+        <h4>{{profile_id}}</h4>
+
+# js
+========== 
+
+    a. router/index.js 
+        {
+            path: "/profile/:id",
+            name: "profile",
+            component: Profile,
+        },
+
+    b. Profile.vue
+        data(){
+            return {
+                title: 'Profile Page',
+                profile_id: this.$route.params.id,
+            }
+        },
+        methods:{
+            profileId(){
+                this.profile_id = this.$route.params.id
+            }
+        },
+        watch: {
+            $route: 'profileId'
+        },
