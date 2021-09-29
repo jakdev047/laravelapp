@@ -1,0 +1,41 @@
+# html
+==========  
+
+    a. pages/Profile.vue
+
+        <div class="my-2">
+            <button type="button" class="btn btn-primary ml-2" @click="aboutPage">
+                About
+            </button>
+            <button type="button" class="btn btn-warning ml-2" @click="previousPage">
+                Previous Page
+            </button>
+            <button type="button" class="btn btn-success ml-2" @click="nextPage">
+                Next
+            </button>
+        </div>
+
+# js
+========== 
+
+    a. Profile.vue
+        data(){
+            return {
+                title: 'Profile Page',
+                profile_id: this.$route.params.id,
+            }
+        },
+        methods:{
+            aboutPage() {
+                this.$router.push({name: 'about-page'})
+            },
+            nextPage() {
+                this.$router.go(-1)
+            },
+            previousPage() {
+                this.$router.go(1)
+            }
+        },
+        watch: {
+            $route: 'profileId'
+        },
